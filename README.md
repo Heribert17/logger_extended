@@ -13,3 +13,5 @@ Tested with:
 # Changelog
 * 1.0.0
     * Initial version
+* 1.0.1
+    * Debug logging optimized if debug isn't active
