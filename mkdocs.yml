@@ -1,0 +1,11 @@
+site_name: logger_extended
+
+theme:
+  name: "material"
+
+plugins:
+  - mkdocstrings
+
+nav:
+  - Documentation: index.md
+  - logger_extended: logger_extended
