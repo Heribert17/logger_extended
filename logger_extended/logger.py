@@ -2,6 +2,7 @@
 Simplified logger module for python
 
 Author: Heribert Füchtenhans
+
 Version: 1.0.1
 
 Implements a rolling file logger that also is able to output to console and
@@ -24,7 +25,13 @@ class Logger:  # pylint: disable=too-many-instance-attributes
     Logger that loggs multiline text correctly.
     """
 
-    def __init__(self, logfilename: str, debuging: bool = False, console: bool = True, memory: bool = False) -> None:
+    def __init__(
+        self,
+        logfilename: str,
+        debuging: bool = False,
+        console: bool = True,
+        memory: bool = False,
+    ) -> None:
         """
         Sets the logging for file output, console and memory
         logfile: Name of the logfile, may include path
