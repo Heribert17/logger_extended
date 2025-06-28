@@ -1,8 +1,4 @@
 
-# For Visual Studio Code
-pylint
-black
-
 # to generate the docs
 mkdocs
 mkdocstrings[python]
