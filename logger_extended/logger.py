@@ -5,7 +5,7 @@ Author: Heribert Füchtenhans
 
 Version: 2025.12.26
 
-Implements a rolling file logger that also is able to output to console and
+Implements a rolling file logger that is able to output to console and
 save all logging output in memory, so that it can be retrieved.
 The logger handles multiline messages correctly and splits it into multiple
 lines.
