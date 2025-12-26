@@ -3,7 +3,7 @@ Simplified logger module for python
 
 Author: Heribert Füchtenhans
 
-Version: 2025.6.28
+Version: 2025.12.26
 
 Implements a rolling file logger that also is able to output to console and
 save all logging output in memory, so that it can be retrieved.
@@ -22,7 +22,7 @@ from typing import final
 
 
 @final
-class Logger:  # pylint: disable=too-many-instance-attributes
+class Logger:
     """
     Logger that logs multiline text correctly.
     """
@@ -63,12 +63,17 @@ class Logger:  # pylint: disable=too-many-instance-attributes
             self._log_memory.setFormatter(logging.Formatter(logformat))
             self._logging.addHandler(self._log_memory)
         # output to file
-        os.makedirs(os.path.split(logfilename)[0], exist_ok=True)
+        outpath = os.path.dirname(logfilename)
+        if outpath != "":
+            os.makedirs(outpath, exist_ok=True)
         self._log_file = logging.handlers.RotatingFileHandler(
             logfilename, "a", logfilesize, 5, delay=True, encoding="UTF-8"
         )
         self._log_file.setLevel(self._loglevel)
         self._log_file.setFormatter(logging.Formatter(logformat))
+        # Check if we should do a rollover when we already reached 90 % filling
+        if os.path.getsize(logfilename) > int(logfilesize * 0.9):
+            self._log_file.doRollover()
         self._logging.addHandler(self._log_file)
 
     def info(self, text: str) -> None:
